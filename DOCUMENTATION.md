@@ -2,6 +2,7 @@
 ## Comprehensive System Architecture, Clinical Engineering & Technical Whitepaper
 
 > **Document Type:** Architectural Blueprint & Engineering Specification  
+> **Authors & Team:** LocalHost Boys (GDG HBTU) — Prashant Gautam, Prathvi Goswami, Ankit Kumar, Love Gwal  
 > **Target Audience:** Technical Architects, Clinical Evaluators, Frontline Health Planners, and System Judges  
 > **Note on Scope:** This document is distinct from a basic `README.md`. While a README focuses on installation commands, this whitepaper details the **foundational design philosophies, ground realities of rural Indian healthcare, end-to-end multi-model pipelines, clinical safety guardrails, and technical trade-offs** engineered into AarogyaVani.
 

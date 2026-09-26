@@ -131,9 +131,9 @@ export const Footer: React.FC = () => {
           <p className="text-[11px] text-slate-500 leading-relaxed">
             <span className="text-amber-400/90 font-semibold">Medical Disclaimer:</span> AarogyaVani provides primary health triage guidance and danger-sign detection. It does not provide definitive medical diagnoses. In emergencies, call 108 or visit the nearest healthcare facility immediately.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 pt-1">
-            <p>© {new Date().getFullYear()} AarogyaVani • Built for Frontline Healthcare Workers</p>
-            <p className="flex items-center gap-1.5 mt-1 sm:mt-0">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 pt-1 gap-2">
+            <p>© {new Date().getFullYear()} AarogyaVani • Built by <strong className="text-slate-300 font-medium">Team LocalHost Boys</strong> (Prashant Gautam, Prathvi Goswami, Ankit Kumar, Love Gwal) • GDG HBTU</p>
+            <p className="flex items-center gap-1.5 shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
               All Services Operational
             </p>

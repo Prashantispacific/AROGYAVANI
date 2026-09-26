@@ -1,7 +1,8 @@
 # 📑 AarogyaVani (आरोग्यवाणी) — Presentation Deck
 ## 12-Slide Executive & Technical Presentation (Refined, Clutter-Free Edition)
 
-> **Event:** Bit N Build '26 • **Track:** HealthTech • **Team:** LocalHost Boys (GDG HBTU)  
+> **Event:** Bit N Build '26 • **Track:** HealthTech  
+> **Team:** LocalHost Boys (GDG HBTU) — **Prashant Gautam**, **Prathvi Goswami**, **Ankit Kumar**, **Love Gwal**  
 > **PowerPoint File:** [`AarogyaVani_Presentation.pptx`](../AarogyaVani_Presentation.pptx)  
 > **Design Aesthetic:** Deep Obsidian Slate (`#0B1120`), Teal/Cyan & Emerald Accents, High-Contrast Segoe UI Typography, Anchor Badges.
 
@@ -21,7 +22,7 @@
 │  [ 5 LANGUAGES SUPPORTED ]    │  [ < 100MS LATENCY ]          │  [ ABDM / NHM COMPLIANT ]     │
 └───────────────────────────────┴───────────────────────────────┴───────────────────────────────┘
 ```
-- **Team LocalHost Boys**: GDG HBTU • Bit N Build '26
+- **Team LocalHost Boys (GDG HBTU)**: Prashant Gautam • Prathvi Goswami • Ankit Kumar • Love Gwal
 - **Architecture**: React 19 • Gemini 2.5 Flash • Sarvam Indic AI • Production Ready PWA
 
 ---

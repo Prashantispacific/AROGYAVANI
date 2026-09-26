@@ -215,10 +215,10 @@ def build_presentation(output_path="AarogyaVani_Presentation.pptx"):
     tf_foot = foot_card.text_frame
     tf_foot.vertical_anchor = MSO_ANCHOR.MIDDLE
     p = tf_foot.paragraphs[0]
-    p.text = "Team LocalHost Boys • GDG HBTU   |   React 19 • Gemini 2.5 Flash • Sarvam AI   |   Production Ready PWA"
+    p.text = "Team LocalHost Boys (GDG HBTU): Prashant Gautam • Prathvi Goswami • Ankit Kumar • Love Gwal"
     p.font.size = Pt(11)
     p.font.bold = True
-    p.font.color.rgb = TEXT_MUTED
+    p.font.color.rgb = TEXT_LIGHT
     p.font.name = "Segoe UI"
     p.alignment = PP_ALIGN.CENTER
 
