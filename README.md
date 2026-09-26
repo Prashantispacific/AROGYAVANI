@@ -52,26 +52,26 @@ Patients or ASHAs speak natural symptoms in Indian languages or regional dialect
 
 ```mermaid
 flowchart TD
-    User([Citizen or ASHA Worker]) -->|Spoken Voice / Mic| ASR[Speech Ingestion: Sarvam Saaras v4 / Gemini Audio]
-    User -->|Prescription Photo| OCR[Document OCR: Gemini Vision / Sarvam Doc-AI]
-    User -->|Body Map / Vitals| Form[Client-Side Demographics & Vitals]
+    User(["Citizen or ASHA Worker"]) -->|"Spoken Voice / Mic"| ASR["Speech Ingestion: Sarvam Saaras v4 / Gemini Audio"]
+    User -->|"Prescription Photo"| OCR["Document OCR: Gemini Vision / Sarvam Doc-AI"]
+    User -->|"Body Map / Vitals"| Form["Client-Side Demographics & Vitals"]
 
-    ASR --> Gate{Deterministic Danger-Sign Rules}
+    ASR --> Gate{"Deterministic Danger-Sign Rules"}
     OCR --> Gate
     Form --> Gate
 
-    Gate -->|CRITICAL MATCH (Chest Pain, Seizure, Bleeding)| Red[RED: 108 Ambulance Hotline + Direct Hospital Transfer]
-    Gate -->|NO CRITICAL SIGNS| LLM[Gemini 2.5 Flash Clinical Risk Stratification]
+    Gate -->|"CRITICAL MATCH (Chest Pain, Seizure, Bleeding)"| Red["RED: 108 Ambulance Hotline + Direct Hospital Transfer"]
+    Gate -->|"NO CRITICAL SIGNS"| LLM["Gemini 2.5 Flash Clinical Risk Stratification"]
 
-    LLM --> Triage{Risk Evaluation}
-    Triage -->|Moderate Risk| Yellow[YELLOW: PHC Visit in 1-2 Days]
-    Triage -->|Mild / Self-limiting| Green[GREEN: Routine Home Care & Hydration]
+    LLM --> Triage{"Risk Evaluation"}
+    Triage -->|"Moderate Risk"| Yellow["YELLOW: PHC Visit in 1-2 Days"]
+    Triage -->|"Mild / Self-limiting"| Green["GREEN: Routine Home Care & Hydration"]
 
-    Red --> TTS[Sarvam Bulbul v3 TTS Voice Synthesis]
+    Red --> TTS["Sarvam Bulbul v3 TTS Voice Synthesis"]
     Yellow --> TTS
     Green --> TTS
 
-    TTS --> Output[Audio Player + NHM Referral Slip + Print/Share]
+    TTS --> Output["Audio Player + NHM Referral Slip + Print/Share"]
 ```
 
 ---
