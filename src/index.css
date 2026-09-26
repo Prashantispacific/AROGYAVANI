@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-slate-900 text-slate-800 min-h-screen selection:bg-emerald-500 selection:text-white;
+  }
+}
+
+/* Deep Atmospheric Clinical Mesh Canvas with Architectural Depth */
+.bg-medical-depth {
+  background-color: #0b1523;
+  background-image:
+    /* Deep Ambient Clinical Radial Lights */
+    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(9, 118, 93, 0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 50% at 100% 25%, rgba(14, 116, 144, 0.25) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 0% 50%, rgba(16, 185, 129, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 60% at 50% 105%, rgba(12, 74, 96, 0.3) 0%, transparent 75%),
+    /* Micro Architectural Precision Grid */
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  background-attachment: fixed;
+}
+
+@layer components {
+  /* High-Depth Glassmorphism Cards */
+  .card-depth {
+    @apply bg-white/92 backdrop-blur-2xl rounded-3xl border border-white/80
+           shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25),0_4px_12px_rgba(0,0,0,0.08),inset_0_1.5px_0_rgba(255,255,255,1)]
+           p-6 sm:p-8 transition-all duration-200 relative;
+  }
+
+  .card-depth-dark {
+    @apply bg-slate-900/85 backdrop-blur-2xl rounded-3xl border border-slate-700/60
+           shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)]
+           p-6 sm:p-8 text-white transition-all duration-200 relative;
+  }
+
+  .card-subtle {
+    @apply bg-slate-50/80 backdrop-blur-md rounded-2xl border border-slate-200/80
+           shadow-[0_2px_8px_rgba(0,0,0,0.02),inset_0_1px_0_rgba(255,255,255,0.8)]
+           p-4 sm:p-5 transition-all;
+  }
+
+  /* Tactile Clinical Action Buttons */
+  .btn-primary {
+    @apply px-6 py-3.5 bg-gradient-to-r from-emerald-600 via-emerald-600 to-teal-600 text-white rounded-2xl font-bold
+           shadow-[0_10px_25px_-5px_rgba(5,150,105,0.4),inset_0_1.5px_0_rgba(255,255,255,0.25)]
+           hover:from-emerald-500 hover:via-emerald-600 hover:to-teal-500
+           hover:shadow-[0_14px_30px_-5px_rgba(5,150,105,0.5)]
+           active:scale-[0.98] transition-all duration-150 cursor-pointer
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3.5 bg-white text-slate-700 rounded-2xl font-bold
+           border border-slate-200/90 shadow-[0_4px_12px_rgba(0,0,0,0.04),inset_0_1.5px_0_rgba(255,255,255,1)]
+           hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900
+           hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)]
+           active:scale-[0.98] transition-all duration-150 cursor-pointer;
+  }
+
+  .btn-danger {
+    @apply px-6 py-3.5 bg-gradient-to-r from-rose-600 via-rose-600 to-red-600 text-white rounded-2xl font-bold
+           shadow-[0_10px_25px_-5px_rgba(225,29,72,0.45),inset_0_1.5px_0_rgba(255,255,255,0.25)]
+           hover:from-rose-500 hover:to-red-500
+           hover:shadow-[0_14px_30px_-5px_rgba(225,29,72,0.55)]
+           active:scale-[0.98] transition-all duration-150 cursor-pointer;
+  }
+}
+
+/* Sound Wave Equalizer Simulation */
+.sound-wave-bar {
+  width: 4px;
+  border-radius: 9999px;
+  background-color: currentColor;
+}
+
+/* Glowing Radial Orbs */
+.glow-orb-primary {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-orb-cyan {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
