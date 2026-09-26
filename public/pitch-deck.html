@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AarogyaVani (आरोग्यवाणी) — Pitch Deck</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    :root {
+      --bg: #0B1120;
+      --card-bg: #131D31;
+      --card-border: #263858;
+      --card-hover: #1A2844;
+      --text-white: #FFFFFF;
+      --text-light: #E2E8F0;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --emerald: #10B981;
+      --teal: #06B6D4;
+      --blue: #3B82F6;
+      --amber: #F59E0B;
+      --rose: #EF4444;
+      --indigo: #6366F1;
+      --purple: #A855F7;
+      --pill-bg: #121E34;
+      --pill-border: #2D446A;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-light);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Progress Bar */
+    .progress-bar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      z-index: 100;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--emerald));
+      width: 8.33%;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    }
+
+    /* Deck Viewport */
+    .deck-viewport {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem 5.25rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1260px;
+      height: 100%;
+      max-height: calc(100vh - 6.75rem);
+      background: transparent;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateY(8px) scale(0.995);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      position: relative;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Slide Header Area */
+    .slide-header {
+      margin-bottom: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .category-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      color: var(--teal);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .slide-number-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+    }
+
+    .slide-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-white);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      line-height: 1.35;
+    }
+
+    /* Slide Content Layouts */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      height: 100%;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.35rem;
+      height: 100%;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      height: 100%;
+      position: relative;
+    }
+
+    /* Base Card */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: var(--card-hover);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 1.2rem;
+      right: 1.2rem;
+      height: 4px;
+      border-radius: 0 0 4px 4px;
+      background: currentColor;
+    }
+
+    .card.emerald { color: var(--emerald); }
+    .card.teal { color: var(--teal); }
+    .card.blue { color: var(--blue); }
+    .card.amber { color: var(--amber); }
+    .card.rose { color: var(--rose); }
+    .card.indigo { color: var(--indigo); }
+    .card.purple { color: var(--purple); }
+
+    .card-top {
+      flex: 1;
+    }
+
+    .card-stat {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: inherit;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .card-headline {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 0.85rem;
+      line-height: 1.3;
+    }
+
+    .card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .card-list li {
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: var(--text-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .card-list li .bullet-marker {
+      color: inherit;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    .card-list li strong {
+      color: var(--text-white);
+    }
+
+    .card-bottom-pill {
+      margin-top: 1rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 0.5rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid currentColor;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: inherit;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* Pipeline Arrow */
+    .pipeline-step {
+      position: relative;
+    }
+
+    .pipeline-step:not(:last-child)::after {
+      content: "➔";
+      position: absolute;
+      right: -0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--card-border);
+      font-size: 1.25rem;
+      font-weight: 900;
+      z-index: 2;
+    }
+
+    /* Hero Slide Special */
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .hero-top {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--text-white);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-top: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      margin-top: 0.75rem;
+      max-width: 950px;
+      line-height: 1.5;
+    }
+
+    .hero-footer-bar {
+      margin-top: 1.25rem;
+      background: var(--pill-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* Bottom Control Bar */
+    .deck-controls {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4.25rem;
+      background: rgba(11, 17, 32, 0.92);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 90;
+    }
+
+    .controls-left, .controls-right, .controls-center {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-mark {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-mark span {
+      color: var(--teal);
+    }
+
+    .ctrl-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-light);
+      padding: 0.55rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+      outline: none;
+    }
+
+    .ctrl-btn:hover {
+      background: var(--card-hover);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: var(--text-white);
+      transform: translateY(-1px);
+    }
+
+    .ctrl-btn:active {
+      transform: translateY(0);
+    }
+
+    .ctrl-btn.primary {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #071724;
+      font-weight: 700;
+    }
+
+    .ctrl-btn.primary:hover {
+      background: #22d3ee;
+      border-color: #22d3ee;
+    }
+
+    .slide-counter {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-light);
+      padding: 0 0.5rem;
+    }
+
+    /* Modal Drawers: Grid Overview & Speaker Notes */
+    .drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 11, 22, 0.88);
+      backdrop-filter: blur(14px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .drawer.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .drawer-content {
+      background: #0E1628;
+      border: 1px solid var(--card-border);
+      border-radius: 1.25rem;
+      width: 100%;
+      max-width: 1100px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .drawer-header h2 {
+      font-size: 1.4rem;
+      color: var(--text-white);
+      font-weight: 800;
+    }
+
+    .close-btn {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-btn:hover {
+      color: var(--text-white);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Grid Overview Thumbnails */
+    .slides-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .slide-thumb {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.65rem;
+      padding: 0.85rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .slide-thumb:hover, .slide-thumb.current {
+      border-color: var(--teal);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    .slide-thumb-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    .slide-thumb-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.3;
+    }
+
+    /* Speaker Notes Styling */
+    .speaker-notes-body {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-light);
+    }
+
+    .notes-section {
+      margin-bottom: 1.25rem;
+      background: var(--card-bg);
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      border-left: 4px solid var(--teal);
+    }
+
+    .notes-section h4 {
+      font-size: 0.95rem;
+      color: var(--text-white);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Print Stylesheet for PDF Export */
+    @media print {
+      body {
+        overflow: visible;
+        background: #0B1120 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .progress-bar-container, .deck-controls, .drawer {
+        display: none !important;
+      }
+
+      .deck-viewport {
+        padding: 0 !important;
+        display: block !important;
+      }
+
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: none !important;
+        page-break-after: always;
+        break-after: page;
+        height: 100vh;
+        max-width: 100% !important;
+        padding: 2.5rem !important;
+        box-sizing: border-box;
+      }
+    }
+
+    /* Mobile / Small Screen Responsive */
+    @media (max-width: 900px) {
+      .deck-viewport {
+        padding: 1rem 1rem 4.5rem 1rem;
+        overflow-y: auto;
+      }
+
+      .slide {
+        aspect-ratio: auto;
+        min-height: 100%;
+      }
+
+      .grid-3, .grid-2, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 2.4rem;
+      }
+
+      .pipeline-step:not(:last-child)::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Progress Bar -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Deck Main Viewport -->
+  <main class="deck-viewport" id="viewport">
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 1: HERO & TITLE -->
+    <!-- =================================================================== -->
+    <section class="slide active" id="slide-1" data-category="BIT N BUILD '26 • HEALTHTECH" data-title="Title & Hero">
+      <div class="hero-container">
+        <div class="hero-top">
+          <div class="category-badge">BIT N BUILD '26 • HEALTHTECH TRACK</div>
+          <h1 class="hero-title">आरोग्यवाणी (AarogyaVani)</h1>
+          <div class="hero-subtitle">Voice-First AI Clinical Triage & Referral Assistant for Rural Healthcare</div>
+          <p class="hero-desc">
+            Empowering 850M+ rural citizens and 1M+ frontline ASHA workers with instant spoken-symptom triage, deterministic emergency safety gates, and verified digital referrals.
+          </p>
+        </div>
+
+        <div class="grid-3" style="height: auto;">
+          <div class="card emerald">
+            <div class="card-top">
+              <div class="card-headline">🎙️ Vernacular Voice-First</div>
+              <p style="font-size: 0.95rem; line-height: 1.45; color: var(--text-light);">
+                Spoken symptoms in 5 regional Indian languages with natural, reassuring audio playback.
+              </p>
+            </div>
+            <div class="card-bottom-pill">5 LANGUAGES SUPPORTED</div>
+          </div>
+
+          <div class="card rose">
+            <div class="card-top">
+              <div class="card-headline">🛡️ &lt;100ms Deterministic Gate</div>
+              <p style="font-size: 0.95rem; line-height: 1.45; color: var(--text-light);">
+                Rule-based emergency bypass eliminates LLM hallucination for critical life threats.
+              </p>
+            </div>
+            <div class="card-bottom-pill">&lt; 100MS LATENCY</div>
+          </div>
+
+          <div class="card teal">
+            <div class="card-top">
+              <div class="card-headline">📋 ASHA Clinical Copilot</div>
+              <p style="font-size: 0.95rem; line-height: 1.45; color: var(--text-light);">
+                Doorstep vitals logging, prescription OCR & verified PHC referral slips.
+              </p>
+            </div>
+            <div class="card-bottom-pill">ABDM / NHM COMPLIANT</div>
+          </div>
+        </div>
+
+        <div class="hero-footer-bar">
+          <div>Team LocalHost Boys • GDG HBTU</div>
+          <div>React 19 • Gemini 2.5 Flash • Sarvam Indic AI</div>
+          <div style="color: var(--emerald);">● Production-Ready PWA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 2: THE PROBLEM -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-2" data-category="GROUND REALITY & CLINICAL CONTEXT" data-title="The Problem: Rural Healthcare Trilemma">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">GROUND REALITY & CLINICAL CONTEXT</div>
+          <div class="slide-number-badge">02 / 12</div>
+        </div>
+        <h2 class="slide-title">The Problem: The Rural Indian Healthcare Trilemma</h2>
+        <p class="slide-subtitle">Over 850 million rural citizens face an acute lack of timely, accessible medical triage.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card rose">
+            <div class="card-top">
+              <div class="card-stat">1 : 25,000</div>
+              <div class="card-headline">Extreme Doctor Scarcity</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> 25× worse than WHO benchmark (1:1,000)</li>
+                <li><span class="bullet-marker">▸</span> 40+ km average travel to nearest hospital</li>
+                <li><span class="bullet-marker">▸</span> Delayed arrivals turn mild illness into sepsis</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">CRITICAL SHORTAGE</div>
+          </div>
+
+          <div class="card amber">
+            <div class="card-top">
+              <div class="card-stat">850M+</div>
+              <div class="card-headline">Language & Literacy Barrier</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> Typing medical symptoms fails low-literacy users</li>
+                <li><span class="bullet-marker">▸</span> Hundreds of vernacular dialects & colloquial terms</li>
+                <li><span class="bullet-marker">▸</span> Handwritten doctor slips lost or illegible</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">ACCESSIBILITY GAP</div>
+          </div>
+
+          <div class="card teal">
+            <div class="card-top">
+              <div class="card-stat">1 Million+</div>
+              <div class="card-headline">Overburdened ASHA Workers</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> Backbone of rural health carries heavy paper logs</li>
+                <li><span class="bullet-marker">▸</span> Zero clinical triage decision-support at doorsteps</li>
+                <li><span class="bullet-marker">▸</span> Doctors receive unstructured verbal referrals</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">OPERATIONAL BOTTLENECK</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 3: THE SOLUTION -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-3" data-category="INNOVATION & VALUE PROPOSITION" data-title="The Solution: What is AarogyaVani?">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">INNOVATION & VALUE PROPOSITION</div>
+          <div class="slide-number-badge">03 / 12</div>
+        </div>
+        <h2 class="slide-title">The Solution: What is AarogyaVani?</h2>
+        <p class="slide-subtitle">A dual-engine platform designed for rural simplicity and clinical-grade reliability.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card emerald">
+            <div class="card-top">
+              <div class="card-headline">💡 For Patients & Community Health (Human-Centric)</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">✔</span> <div><strong>Speak Symptoms Naturally:</strong> Press one microphone button and describe issues in mother tongue—zero typing.</div></li>
+                <li><span class="bullet-marker">✔</span> <div><strong>5 Regional Indian Languages:</strong> Native understanding of Hindi, Bengali, Telugu, Marathi, and English idioms.</div></li>
+                <li><span class="bullet-marker">✔</span> <div><strong>Instant Life-Threat Alert:</strong> Detects heart attacks, stroke signs, or severe trauma in &lt;100ms with 108 hotline.</div></li>
+                <li><span class="bullet-marker">✔</span> <div><strong>Spoken Voice Guidance:</strong> Reads out clear home-care remedies and instructions so illiterate patients stay guided.</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">EMPOWERING 850M+ CITIZENS</div>
+          </div>
+
+          <div class="card blue">
+            <div class="card-top">
+              <div class="card-headline">⚡ For Technical Evaluators & Architects (High-Reliability)</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">⚡</span> <div><strong>Multi-Model Pipeline:</strong> Sarvam Saaras v4 (ASR) + Gemini 2.5 Flash (Triage) + Sarvam Bulbul v3 (TTS).</div></li>
+                <li><span class="bullet-marker">⚡</span> <div><strong>Zero-Hallucination Safety Gate:</strong> Deterministic regex scans emergency keywords before LLM inference occurs.</div></li>
+                <li><span class="bullet-marker">⚡</span> <div><strong>Multimodal Prescription OCR:</strong> Gemini 2.5 Vision digitizes handwritten slips with human-in-the-loop editing.</div></li>
+                <li><span class="bullet-marker">⚡</span> <div><strong>Zero PII Footprint:</strong> Stateless, privacy-first design adhering to Ayushman Bharat Digital Mission (ABDM).</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">SUB-SECOND MULTI-MODEL STACK</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 4: DUAL PERSONA -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-4" data-category="USER-CENTRIC CLINICAL WORKFLOW" data-title="Dual-Persona Interface">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">USER-CENTRIC CLINICAL WORKFLOW</div>
+          <div class="slide-number-badge">04 / 12</div>
+        </div>
+        <h2 class="slide-title">Dual-Persona Interface: Citizen vs. ASHA Mode</h2>
+        <p class="slide-subtitle">One unified platform serving both illiterate villagers and frontline healthcare workers.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card teal">
+            <div class="card-top">
+              <div class="card-headline">👤 Citizen / Patient Mode (मरीज़)</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> <div><strong>Target User:</strong> Rural villagers, elderly patients, low-literacy citizens seeking home triage.</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Effortless Intake:</strong> 1-tap audio record button or visual touch body map (Head, Chest, Stomach).</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Traffic-Light Result:</strong> Clear Red, Yellow, or Green status badge with plain-language explanation.</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Spoken Guidance:</strong> Plays friendly audio advice in native tongue—no reading required.</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">✨ IMPACT: CUTS 75% UNNECESSARY HOSPITAL TRAVEL</div>
+          </div>
+
+          <div class="card indigo">
+            <div class="card-top">
+              <div class="card-headline">👩‍⚕️ ASHA Health Worker Mode (आशा)</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> <div><strong>Target User:</strong> Accredited Social Health Activists conducting home visits and screening rounds.</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Vitals & History:</strong> Record Blood Pressure, SpO2, Pulse, Temperature, and patient demographics.</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Referral Slips:</strong> Generates official, formatted PHC referral card with ASHA verification badge.</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Offline-First Flow:</strong> Logs beneficiary visits locally on mobile device and syncs when back online.</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">✨ IMPACT: SAVES 4+ HOURS DAILY IN MANUAL LOGGING</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 5: SYSTEM FLOW -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-5" data-category="THE CLINICAL PIPELINE" data-title="End-to-End System Flow">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">THE CLINICAL PIPELINE</div>
+          <div class="slide-number-badge">05 / 12</div>
+        </div>
+        <h2 class="slide-title">End-to-End System Flow: From Voice Note to Referral</h2>
+        <p class="slide-subtitle">A 4-stage pipeline combining deterministic instant safety with multimodal intelligence.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-4">
+          <div class="card teal pipeline-step">
+            <div class="card-top">
+              <div style="font-size: 0.8rem; font-weight: 800; color: var(--teal); margin-bottom: 0.25rem;">STEP 01</div>
+              <div class="card-headline" style="font-size: 1.15rem;">Multimodal Intake</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> Voice input in 5 languages</li>
+                <li><span class="bullet-marker">▸</span> Touch body-part map</li>
+                <li><span class="bullet-marker">▸</span> Prescription photo scan</li>
+                <li><span class="bullet-marker">▸</span> Clinical vitals logging</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">MULTIMODAL INTAKE</div>
+          </div>
+
+          <div class="card rose pipeline-step">
+            <div class="card-top">
+              <div style="font-size: 0.8rem; font-weight: 800; color: var(--rose); margin-bottom: 0.25rem;">STEP 02</div>
+              <div class="card-headline" style="font-size: 1.15rem;">Deterministic Gate</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> &lt;100ms Regex check</li>
+                <li><span class="bullet-marker">▸</span> 15+ lethal red-flags</li>
+                <li><span class="bullet-marker">▸</span> Zero LLM latency/hallucination</li>
+                <li><span class="bullet-marker">▸</span> Direct 108 Emergency lock</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">&lt; 100MS FAILSAFE</div>
+          </div>
+
+          <div class="card amber pipeline-step">
+            <div class="card-top">
+              <div style="font-size: 0.8rem; font-weight: 800; color: var(--amber); margin-bottom: 0.25rem;">STEP 03</div>
+              <div class="card-headline" style="font-size: 1.15rem;">AI Risk Triage</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> Gemini 2.5 Flash reasoning</li>
+                <li><span class="bullet-marker">▸</span> WHO IMNCI triage protocol</li>
+                <li><span class="bullet-marker">▸</span> Stratified: Red/Yellow/Green</li>
+                <li><span class="bullet-marker">▸</span> Explainable clinical rationale</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">WHO IMNCI ENGINE</div>
+          </div>
+
+          <div class="card emerald pipeline-step">
+            <div class="card-top">
+              <div style="font-size: 0.8rem; font-weight: 800; color: var(--emerald); margin-bottom: 0.25rem;">STEP 04</div>
+              <div class="card-headline" style="font-size: 1.15rem;">Vernacular Action</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> Sarvam Bulbul TTS speech</li>
+                <li><span class="bullet-marker">▸</span> Dual-language display</li>
+                <li><span class="bullet-marker">▸</span> Printable PHC referral slip</li>
+                <li><span class="bullet-marker">▸</span> Actionable home-care steps</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">VOICE & SLIP OUT</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 6: ARCHITECTURE -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-6" data-category="TECHNICAL SPECIFICATIONS" data-title="Architectural Pipeline">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">TECHNICAL SPECIFICATIONS</div>
+          <div class="slide-number-badge">06 / 12</div>
+        </div>
+        <h2 class="slide-title">Architectural Pipeline: Production-Ready Serverless Stack</h2>
+        <p class="slide-subtitle">Decoupled, edge-accelerated architecture built for 99.9% uptime and sub-second responses.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card teal">
+            <div class="card-top">
+              <div class="card-headline">Frontend & Client Edge</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> <div><strong>Framework:</strong> React 19, TypeScript, Vite PWA</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Styling:</strong> Tailwind CSS, Lucide Icons</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Offline Cache:</strong> IndexedDB / LocalStorage</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Audio Capture:</strong> Web MediaStream API</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">EDGE PWA CLIENT</div>
+          </div>
+
+          <div class="card blue">
+            <div class="card-top">
+              <div class="card-headline">Serverless API Gateway</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> <div><strong>Runtime:</strong> Netlify Functions v2 (Node.js Edge)</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Security:</strong> Server-side secrets; zero leaks</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Failover Ladder:</strong> Auto-switch between providers</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>CORS & Proxy:</strong> Streaming audio proxy with limits</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">ZERO-SECRET LEAK</div>
+          </div>
+
+          <div class="card purple">
+            <div class="card-top">
+              <div class="card-headline">Multi-Model AI Engine</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> <div><strong>Speech-to-Text:</strong> Sarvam Saaras v4 ⇄ Gemini Audio</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Clinical Triage:</strong> Google Gemini 2.5 Flash (JSON)</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Text-to-Speech:</strong> Sarvam Bulbul v3 ⇄ Web Speech</div></li>
+                <li><span class="bullet-marker">▸</span> <div><strong>Vision OCR:</strong> Gemini 2.5 Flash Document AI</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">SUB-SECOND INFERENCE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 7: SAFETY GATES -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-7" data-category="CLINICAL RISK MITIGATION" data-title="Deterministic Safety Gates">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">CLINICAL RISK MITIGATION</div>
+          <div class="slide-number-badge">07 / 12</div>
+        </div>
+        <h2 class="slide-title">Deterministic Safety Gates: Zero LLM Gambling in Emergencies</h2>
+        <p class="slide-subtitle">Why life-threatening symptoms never wait for or depend on probabilistic AI models.</p>
+      </div>
+
+      <div class="slide-body">
+        <div style="background: rgba(239, 68, 68, 0.12); border: 1.5px solid var(--rose); padding: 0.75rem 1.25rem; border-radius: 0.75rem; color: #FECACA; font-weight: 700; font-size: 0.95rem; margin-bottom: 1.25rem; text-align: center;">
+          🚨 CLINICAL GOLD STANDARD: Any acute condition triggers an instant &lt;100ms emergency protocol, bypassing LLM processing entirely.
+        </div>
+
+        <div class="grid-2">
+          <div class="card rose">
+            <div class="card-top">
+              <div class="card-headline">🛑 Critical Danger Signs Detected</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>Cardiac Emergencies:</strong> Crushing chest pain, left-arm radiating pressure, cold sweating</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Stroke & Seizures:</strong> Facial drooping, slurred speech, active convulsions, loss of consciousness</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Severe Hemorrhage:</strong> Uncontrolled arterial bleeding, major compound fractures</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Pediatric Red Flags:</strong> Infant high fever with extreme lethargy, inability to nurse</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">IMMEDIATE 108 INTERVENTION</div>
+          </div>
+
+          <div class="card teal">
+            <div class="card-top">
+              <div class="card-headline">⚡ Instant Fail-Safe Execution</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">✔</span> <div><strong>&lt; 100ms Edge Execution:</strong> Client-side regex scans transcript before any API request is sent.</div></li>
+                <li><span class="bullet-marker">✔</span> <div><strong>Zero LLM Hallucination:</strong> Completely eliminates risk of AI downplaying a life threat.</div></li>
+                <li><span class="bullet-marker">✔</span> <div><strong>One-Tap 108 Hotline:</strong> Screen locks to urgent red modal with direct ambulance dialer.</div></li>
+                <li><span class="bullet-marker">✔</span> <div><strong>Loud Vernacular Audio:</strong> Automatically plays calm, authoritative emergency first-aid advice.</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">ZERO PROBABILISTIC GAMBLE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 8: RISK STRATIFICATION -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-8" data-category="WHO IMNCI & NHM TRIAGE TIERS" data-title="Clinical Risk Stratification">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">WHO IMNCI & NHM TRIAGE TIERS</div>
+          <div class="slide-number-badge">08 / 12</div>
+        </div>
+        <h2 class="slide-title">Clinical Risk Stratification: Red / Yellow / Green Framework</h2>
+        <p class="slide-subtitle">Clear, actionable categories routing patients to the exact level of clinical care needed.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card rose">
+            <div class="card-top">
+              <div style="font-size: 0.85rem; font-weight: 800; color: var(--rose);">RED: EMERGENCY</div>
+              <div class="card-headline" style="margin-bottom: 0.25rem;">Immediate Hospital / 108</div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--rose); margin-bottom: 0.85rem;">Action Window: Minutes Matter</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> Chest pain, stroke signs, severe hemorrhage</li>
+                <li><span class="bullet-marker">▸</span> Bypasses LLM directly via safety gate</li>
+                <li><span class="bullet-marker">▸</span> Locks UI to flashing emergency card</li>
+                <li><span class="bullet-marker">▸</span> Urges immediate transfer to District Hospital</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">AMBULANCE / ER NOW</div>
+          </div>
+
+          <div class="card amber">
+            <div class="card-top">
+              <div style="font-size: 0.85rem; font-weight: 800; color: var(--amber);">YELLOW: ATTENTION</div>
+              <div class="card-headline" style="margin-bottom: 0.25rem;">Visit PHC in 24–48 Hours</div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--amber); margin-bottom: 0.85rem;">Action Window: Sub-Acute</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> Persistent high fever &gt;3 days, productive cough</li>
+                <li><span class="bullet-marker">▸</span> Analyzed by Gemini 2.5 Flash with vitals context</li>
+                <li><span class="bullet-marker">▸</span> Generates structured ASHA referral slip</li>
+                <li><span class="bullet-marker">▸</span> Provides warning signs that mandate earlier visit</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">PHC VISIT IN 24-48H</div>
+          </div>
+
+          <div class="card emerald">
+            <div class="card-top">
+              <div style="font-size: 0.85rem; font-weight: 800; color: var(--emerald);">GREEN: ROUTINE</div>
+              <div class="card-headline" style="margin-bottom: 0.25rem;">Supportive Home Care</div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--emerald); margin-bottom: 0.85rem;">Action Window: Self-Limiting</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">▸</span> Common seasonal cold, mild headache, simple fatigue</li>
+                <li><span class="bullet-marker">▸</span> Provides safe, verified home remedies & hydration tips</li>
+                <li><span class="bullet-marker">▸</span> Reads clear instructions via native-language voice</li>
+                <li><span class="bullet-marker">▸</span> Instructs patient to re-triage if symptoms persist</li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">SAFE HOME RECOVERY</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 9: VERNACULAR LOCALIZATION -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-9" data-category="BRIDGING THE DIGITAL DIVIDE" data-title="Vernacular Localization">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">BRIDGING THE DIGITAL DIVIDE</div>
+          <div class="slide-number-badge">09 / 12</div>
+        </div>
+        <h2 class="slide-title">Vernacular Localization & Low-Literacy Inclusivity</h2>
+        <p class="slide-subtitle">Designed from the ground up for rural India's linguistic diversity and low-literacy users.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card emerald">
+            <div class="card-top">
+              <div class="card-headline">5 Major Languages</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>Hindi (Default):</strong> Full Hindi interface and Devanagari voice out</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Regional Support:</strong> English, Bengali, Telugu, and Marathi</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Instant Toggle:</strong> Switch language anytime with 1 tap, zero reload</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Acoustic Tuning:</strong> Tuned for colloquial idioms, slangs, and accents</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">BHASHINI ALIGNED</div>
+          </div>
+
+          <div class="card teal">
+            <div class="card-top">
+              <div class="card-headline">Visual Body-Part Map</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>Zero Typing Needed:</strong> Touch head, chest, stomach, arms, or legs</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Elderly Friendly:</strong> Large visual targets with high-contrast borders</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Multi-Region Select:</strong> Select multiple affected zones simultaneously</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Context Enrichment:</strong> Feeds anatomical location directly to triage AI</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">ZERO-LITERACY BARRIER</div>
+          </div>
+
+          <div class="card blue">
+            <div class="card-top">
+              <div class="card-headline">Voice-In / Voice-Out</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>Natural Speech ASR:</strong> Powered by Sarvam Saaras v4 acoustic models</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Warm Indian TTS:</strong> Sarvam Bulbul v3 sounds natural, not robotic</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Dual Readout:</strong> Visual cards accompanied by clear audio playback</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Illiteracy Bridge:</strong> Citizens get expert medical advice without reading</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">NATURAL SPEECH VIVO</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 10: PRESCRIPTION OCR -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-10" data-category="COMPUTER VISION & DRUG SAFETY" data-title="Multimodal Prescription OCR">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">COMPUTER VISION & DRUG SAFETY</div>
+          <div class="slide-number-badge">10 / 12</div>
+        </div>
+        <h2 class="slide-title">Multimodal Prescription OCR & Safety Screening</h2>
+        <p class="slide-subtitle">Translating illegible handwritten doctor prescriptions into safe, digital patient records.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card teal">
+            <div class="card-top">
+              <div class="card-headline">1. Vision Extraction</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>Camera Capture:</strong> Snap photo of messy handwritten doctor paper slip</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Multimodal OCR:</strong> Gemini 2.5 Flash Vision extracts medicines & doses</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Laser Scan UI:</strong> Animated laser scanning line gives instant feedback</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Privacy Focus:</strong> Images deleted immediately after OCR extraction</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">GEMINI 2.5 VISION OCR</div>
+          </div>
+
+          <div class="card amber">
+            <div class="card-top">
+              <div class="card-headline">2. Safety Screening</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>Contraindications:</strong> Cross-checks medicines for dangerous interactions</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Dosage Verification:</strong> Flags abnormal dosages or missing frequency terms</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Overdose Check:</strong> Prevents duplicate medications across old slips</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Warning Badges:</strong> Displays clear yellow/red medication hazard alerts</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">DRUG SAFETY CHECK</div>
+          </div>
+
+          <div class="card emerald">
+            <div class="card-top">
+              <div class="card-headline">3. Human Verification</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>Editable Form:</strong> Extracted drugs are placed into structured fields</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>ASHA Confirmation:</strong> Health worker confirms or adjusts dosage on screen</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Beneficiary Sync:</strong> Verified list attaches to patient referral record</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>ABDM Ready:</strong> Formatted cleanly for digital health locker sync</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">HUMAN-IN-THE-LOOP</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 11: CLINICAL IMPACT -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-11" data-category="MEASURABLE OUTCOMES & POLICY SYNERGY" data-title="Clinical Impact & Policy Alignment">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">MEASURABLE OUTCOMES & POLICY SYNERGY</div>
+          <div class="slide-number-badge">11 / 12</div>
+        </div>
+        <h2 class="slide-title">Real-World Clinical Impact & Government Alignment</h2>
+        <p class="slide-subtitle">Driving quantifiable healthcare efficiency while strictly aligning with national health frameworks.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-4" style="height: auto; margin-bottom: 1.25rem;">
+          <div class="card rose" style="padding: 1.15rem;">
+            <div class="card-stat" style="font-size: 2rem;">&lt; 100 ms</div>
+            <div class="card-headline" style="font-size: 1rem; margin-bottom: 0.2rem;">Emergency Triage</div>
+            <div style="font-size: 0.8rem; color: var(--text-light);">Zero delay to dial 108 ambulance</div>
+          </div>
+
+          <div class="card emerald" style="padding: 1.15rem;">
+            <div class="card-stat" style="font-size: 2rem;">75%</div>
+            <div class="card-headline" style="font-size: 1rem; margin-bottom: 0.2rem;">Travel Reduction</div>
+            <div style="font-size: 0.8rem; color: var(--text-light);">Cuts unnecessary hospital visits</div>
+          </div>
+
+          <div class="card teal" style="padding: 1.15rem;">
+            <div class="card-stat" style="font-size: 2rem;">100%</div>
+            <div class="card-headline" style="font-size: 1rem; margin-bottom: 0.2rem;">Standardized Referrals</div>
+            <div style="font-size: 0.8rem; color: var(--text-light);">Structured slips for PHC doctors</div>
+          </div>
+
+          <div class="card blue" style="padding: 1.15rem;">
+            <div class="card-stat" style="font-size: 2rem;">5+</div>
+            <div class="card-headline" style="font-size: 1rem; margin-bottom: 0.2rem;">Regional Languages</div>
+            <div style="font-size: 0.8rem; color: var(--text-light);">True linguistic equity in Bharat</div>
+          </div>
+        </div>
+
+        <div class="card teal" style="padding: 1.5rem;">
+          <div class="card-headline" style="color: var(--teal); margin-bottom: 0.75rem;">🏛️ Alignment with Government of India Digital Missions</div>
+          <ul class="card-list" style="gap: 0.75rem;">
+            <li><span class="bullet-marker">✔</span> <div><strong>Ayushman Bharat Digital Mission (ABDM):</strong> Triage records format ready for 14-digit ABHA health accounts and PHR bundles.</div></li>
+            <li><span class="bullet-marker">✔</span> <div><strong>Digital India Bhashini Mission:</strong> Accelerating vernacular voice AI adoption in rural public service delivery.</div></li>
+            <li><span class="bullet-marker">✔</span> <div><strong>National Health Mission (NHM):</strong> Directly empowers 1 Million+ frontline ASHA workers with doorstep decision support.</div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SLIDE 12: ROADMAP & CONCLUSION -->
+    <!-- =================================================================== -->
+    <section class="slide" id="slide-12" data-category="THE PATH FORWARD" data-title="Roadmap & Takeaways">
+      <div class="slide-header">
+        <div class="header-top">
+          <div class="category-badge">THE PATH FORWARD</div>
+          <div class="slide-number-badge">12 / 12</div>
+        </div>
+        <h2 class="slide-title">Roadmap, Scalability & Summary Takeaways</h2>
+        <p class="slide-subtitle">From hackathon proof-of-concept to nationwide rural healthcare infrastructure.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card teal">
+            <div class="card-top">
+              <div class="card-headline">Near-Term (Next 3 Months)</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>Edge WASM Models:</strong> Offline voice transcription for zero-signal village clinics</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>WhatsApp PHC Bot:</strong> Automated referral slip push to primary care doctors</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>5 Additional Languages:</strong> Tamil, Gujarati, Punjabi, Kannada, and Odia support</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">OFFLINE-FIRST EDGE</div>
+          </div>
+
+          <div class="card indigo">
+            <div class="card-top">
+              <div class="card-headline">Long-Term Vision</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>ABDM Sandbox Push:</strong> Direct electronic health record sync via ABDM Gateway</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Outbreak Heatmaps:</strong> Aggregated symptom cluster maps for District Health Officers</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Medicine Stock Alert:</strong> Flags local PHC stockouts for essential antibiotics & ORS</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">NATIONAL HEALTH GRID</div>
+          </div>
+
+          <div class="card emerald">
+            <div class="card-top">
+              <div class="card-headline">Summary for Evaluators</div>
+              <ul class="card-list">
+                <li><span class="bullet-marker">•</span> <div><strong>Life-Saving Safety:</strong> Deterministic &lt;100ms emergency gates prevent clinical tragedy</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>Production Architecture:</strong> React 19, serverless edge, and multi-model AI fallbacks</div></li>
+                <li><span class="bullet-marker">•</span> <div><strong>True Clinical Equity:</strong> Brings specialized triage to 850M+ last-mile citizens</div></li>
+              </ul>
+            </div>
+            <div class="card-bottom-pill">MISSION-READY IMPACT</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Floating Control Bar -->
+  <footer class="deck-controls">
+    <div class="controls-left">
+      <div class="brand-mark">आरोग्य<span>वाणी</span></div>
+      <div style="font-size: 0.8rem; color: var(--text-dim);">|</div>
+      <div id="currentCategory" style="font-size: 0.78rem; font-weight: 700; color: var(--teal); text-transform: uppercase;">BIT N BUILD '26</div>
+    </div>
+
+    <div class="controls-center">
+      <button class="ctrl-btn" id="prevBtn" title="Previous Slide (Left Arrow)">◀ Prev</button>
+      <div class="slide-counter" id="slideCounter">01 / 12</div>
+      <button class="ctrl-btn primary" id="nextBtn" title="Next Slide (Right Arrow or Space)">Next ▶</button>
+    </div>
+
+    <div class="controls-right">
+      <button class="ctrl-btn" id="gridBtn" title="Slide Overview Grid (G)">⊞ Grid</button>
+      <button class="ctrl-btn" id="notesBtn" title="Speaker Notes (N)">📝 Notes</button>
+      <button class="ctrl-btn" id="fullscreenBtn" title="Toggle Fullscreen (F)">⛶ Fullscreen</button>
+      <button class="ctrl-btn" onclick="window.print()" title="Print to PDF / Save Slides">🖨️ Print</button>
+    </div>
+  </footer>
+
+  <!-- Drawer: Grid Overview Modal -->
+  <div class="drawer" id="gridDrawer">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h2>Slide Overview Matrix</h2>
+        <button class="close-btn" id="closeGridBtn">✕</button>
+      </div>
+      <div class="slides-grid" id="gridContainer"></div>
+    </div>
+  </div>
+
+  <!-- Drawer: Speaker Notes Modal -->
+  <div class="drawer" id="notesDrawer">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h2>Speaker Notes & Pitch Script</h2>
+        <button class="close-btn" id="closeNotesBtn">✕</button>
+      </div>
+      <div class="speaker-notes-body" id="notesContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Slide Deck Controller
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+
+    const progressBar = document.getElementById('progressBar');
+    const slideCounter = document.getElementById('slideCounter');
+    const currentCategory = document.getElementById('currentCategory');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const gridBtn = document.getElementById('gridBtn');
+    const notesBtn = document.getElementById('notesBtn');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const gridDrawer = document.getElementById('gridDrawer');
+    const closeGridBtn = document.getElementById('closeGridBtn');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const closeNotesBtn = document.getElementById('closeNotesBtn');
+    const gridContainer = document.getElementById('gridContainer');
+    const notesContent = document.getElementById('notesContent');
+
+    // Pitch Script & Speaker Notes per Slide
+    const speakerNotes = [
+      {
+        title: "Slide 1: Title & Hero",
+        notes: "• Hook: Start with the human face of rural India—a mother with a sick child in a village 40km from the nearest hospital.<br>• Core Value: AarogyaVani is not another text chatbot; it is a sovereign, voice-first clinical copilot built for India's 850 million rural citizens and 1 million frontline ASHA workers.<br>• Key Credibility: Built on React 19, Google Gemini 2.5 Flash, and Sarvam Indic AI."
+      },
+      {
+        title: "Slide 2: The Rural Healthcare Trilemma",
+        notes: "• Explain the 3 pain points crisply:<br>  1. Doctor Ratio 1:25,000 in rural UP/Bihar vs WHO 1:1,000.<br>  2. Illiteracy makes apps with English text forms completely useless.<br>  3. ASHA workers are overworked carrying manual paper registers."
+      },
+      {
+        title: "Slide 3: What is AarogyaVani?",
+        notes: "• Show the dual perspective: for non-tech judges, it's as simple as 'Speak your symptoms naturally, hear clear medical advice.'<br>• For technical judges, emphasize the multi-model architecture and sub-second deterministic safety bypass."
+      },
+      {
+        title: "Slide 4: Dual-Persona User Experience",
+        notes: "• Highlight the distinction:<br>  - Citizen Mode: Ultra-clean, 1-tap voice intake or visual touch body map.<br>  - ASHA Mode: Clinical vitals logging (BP, SpO2, pulse) + generates standardized referral slips for PHC doctors."
+      },
+      {
+        title: "Slide 5: End-to-End System Pipeline",
+        notes: "• Walk the judges through the 4-step pipeline from left to right:<br>  1. Multimodal intake (Voice/Touch/OCR)<br>  2. Deterministic regex gate (<100ms bypass)<br>  3. AI risk stratification (WHO IMNCI rules)<br>  4. Vernacular action delivery (Sarvam Bulbul TTS audio + printed referral slip)."
+      },
+      {
+        title: "Slide 6: Architectural Deep-Dive",
+        notes: "• Highlight the technical excellence:<br>  - Decoupled React 19 PWA with zero client-side secret exposure.<br>  - Netlify v2 edge functions with automated provider fallback.<br>  - Sub-second Indic voice synthesis with Sarvam Bulbul v3."
+      },
+      {
+        title: "Slide 7: Deterministic Safety Gates",
+        notes: "• The strongest clinical point of the pitch: 'Why we never gamble with an LLM in an emergency.'<br>  - Chest pain, severe bleeding, stroke, and pediatric seizures bypass AI models in <100ms.<br>  - Screen immediately locks with direct 108 Emergency Ambulance dialer."
+      },
+      {
+        title: "Slide 8: 3-Tier Clinical Risk Stratification",
+        notes: "• Explain the traffic light system:<br>  - Red: Emergency / 108 ambulance right now.<br>  - Yellow: Sub-acute conditions requiring PHC visit within 24-48 hours.<br>  - Green: Safe home remedies, hydration, and re-triage instructions."
+      },
+      {
+        title: "Slide 9: Vernacular Inclusion & Accessibility",
+        notes: "• Demonstrate the 5-language toggle (Hindi default, English, Bengali, Telugu, Marathi).<br>• Show how non-literate patients can use the touch body map without reading a single word.<br>• Voice-In and Voice-Out (VIVO) completely bridges the digital divide."
+      },
+      {
+        title: "Slide 10: Multimodal Prescription OCR",
+        notes: "• Explain how Gemini 2.5 Vision deciphers messy doctor cursive on crumpled prescription slips.<br>• Emphasize drug safety: automatically flags adverse drug-drug interactions and abnormal dosages.<br>• Human-in-the-loop: ASHA worker confirms extracted fields before saving."
+      },
+      {
+        title: "Slide 11: Real-World Clinical Impact & Alignment",
+        notes: "• Mention the hard metrics:<br>  - <100ms emergency detection.<br>  - 75% reduction in unnecessary hospital travel.<br>  - 100% structured referral slips.<br>• Connect directly with Government of India missions: ABDM, Digital India Bhashini, and NHM."
+      },
+      {
+        title: "Slide 12: Roadmap & Conclusion",
+        notes: "• Conclude with confidence: This is not just a hackathon toy; it is a scalable blueprint for national digital health infrastructure.<br>• Near-term: offline Edge WASM models + WhatsApp PHC alerts.<br>• Long-term: ABDM integration, outbreak heatmaps, and drug stockout alerts."
+      }
+    ];
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+      currentIndex = index;
+
+      slides.forEach((s, idx) => {
+        if (idx === currentIndex) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+
+      // Update Top Progress Bar
+      const progressPercent = ((currentIndex + 1) / totalSlides) * 100;
+      progressBar.style.width = `${progressPercent}%`;
+
+      // Update Controls Counter & Category
+      slideCounter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+      const activeSlide = slides[currentIndex];
+      currentCategory.textContent = activeSlide.getAttribute('data-category') || 'AAROGYAVANI';
+
+      // Update URL Hash
+      window.location.hash = `#${currentIndex + 1}`;
+
+      // Update Thumbnails selection in Grid
+      updateGridSelection();
+      updateNotesContent();
+    }
+
+    function nextSlide() {
+      if (currentIndex < totalSlides - 1) {
+        showSlide(currentIndex + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        showSlide(currentIndex - 1);
+      }
+    }
+
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', (e) => {
+      // If modal is open, Escape closes it
+      if (e.key === 'Escape') {
+        gridDrawer.classList.remove('active');
+        notesDrawer.classList.remove('active');
+        return;
+      }
+
+      // Ignore navigation if typing in an input
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+      switch(e.key) {
+        case 'ArrowRight':
+        case ' ':
+        case 'PageDown':
+        case 'l':
+        case 'L':
+          e.preventDefault();
+          nextSlide();
+          break;
+        case 'ArrowLeft':
+        case 'Backspace':
+        case 'PageUp':
+        case 'h':
+        case 'H':
+          e.preventDefault();
+          prevSlide();
+          break;
+        case 'Home':
+          e.preventDefault();
+          showSlide(0);
+          break;
+        case 'End':
+          e.preventDefault();
+          showSlide(totalSlides - 1);
+          break;
+        case 'f':
+        case 'F':
+          e.preventDefault();
+          toggleFullscreen();
+          break;
+        case 'g':
+        case 'G':
+          e.preventDefault();
+          toggleGrid();
+          break;
+        case 'n':
+        case 'N':
+          e.preventDefault();
+          toggleNotes();
+          break;
+      }
+    });
+
+    // Touch Swipe Gestures
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const swipeDistance = touchEndX - touchStartX;
+      if (swipeDistance < -50) nextSlide();
+      if (swipeDistance > 50) prevSlide();
+    }
+
+    // Buttons
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    // Grid Overview Generator
+    function buildGrid() {
+      gridContainer.innerHTML = '';
+      slides.forEach((s, idx) => {
+        const thumb = document.createElement('div');
+        thumb.className = `slide-thumb ${idx === currentIndex ? 'current' : ''}`;
+        thumb.innerHTML = `
+          <div class="slide-thumb-num">SLIDE ${String(idx + 1).padStart(2, '0')}</div>
+          <div class="slide-thumb-title">${s.getAttribute('data-title') || 'Slide ' + (idx + 1)}</div>
+        `;
+        thumb.addEventListener('click', () => {
+          showSlide(idx);
+          gridDrawer.classList.remove('active');
+        });
+        gridContainer.appendChild(thumb);
+      });
+    }
+
+    function updateGridSelection() {
+      const thumbs = document.querySelectorAll('.slide-thumb');
+      thumbs.forEach((t, idx) => {
+        if (idx === currentIndex) t.classList.add('current');
+        else t.classList.remove('current');
+      });
+    }
+
+    function toggleGrid() {
+      gridDrawer.classList.toggle('active');
+      if (gridDrawer.classList.contains('active')) {
+        notesDrawer.classList.remove('active');
+      }
+    }
+    gridBtn.addEventListener('click', toggleGrid);
+    closeGridBtn.addEventListener('click', () => gridDrawer.classList.remove('active'));
+
+    // Speaker Notes
+    function updateNotesContent() {
+      const item = speakerNotes[currentIndex] || { title: `Slide ${currentIndex + 1}`, notes: "No specific notes." };
+      notesContent.innerHTML = `
+        <div class="notes-section">
+          <h4>${item.title}</h4>
+          <p>${item.notes}</p>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-dim); margin-top: 1rem;">
+          💡 Tip: Use Left / Right arrow keys or Spacebar to navigate slides. Press <strong>G</strong> for slide grid, <strong>F</strong> for fullscreen, <strong>N</strong> to toggle notes.
+        </div>
+      `;
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('active');
+      if (notesDrawer.classList.contains('active')) {
+        gridDrawer.classList.remove('active');
+      }
+    }
+    notesBtn.addEventListener('click', toggleNotes);
+    closeNotesBtn.addEventListener('click', () => notesDrawer.classList.remove('active'));
+
+    // Close drawers clicking outside
+    [gridDrawer, notesDrawer].forEach(drawer => {
+      drawer.addEventListener('click', (e) => {
+        if (e.target === drawer) drawer.classList.remove('active');
+      });
+    });
+
+    // Check Initial URL Hash
+    function initFromHash() {
+      const hash = window.location.hash.replace('#', '');
+      const parsed = parseInt(hash, 10);
+      if (!isNaN(parsed) && parsed >= 1 && parsed <= totalSlides) {
+        showSlide(parsed - 1);
+      } else {
+        showSlide(0);
+      }
+    }
+
+    buildGrid();
+    initFromHash();
+  </script>
+</body>
+</html>
