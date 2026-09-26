@@ -37,6 +37,7 @@ lerna-debug.log*
 
 # Office temporary files
 ~$*
+slide_previews*/
 
 # Python
 __pycache__/
