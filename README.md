@@ -92,15 +92,15 @@ flowchart TD
 ## 🚀 Quick Start Guide
 
 ### Prerequisites
-- Node.js 18+ or 20+
-- npm 9+
+- **Node.js**: `18.x` or `20.x` (LTS recommended)
+- **npm**: `9.x` or higher
 
 ### Installation & Setup
 
 1. **Clone the repository:**
    ```bash
-   git clone <repo-url>
-   cd main
+   git clone https://github.com/Prashantispacific/AROGYAVANI.git
+   cd AROGYAVANI
    ```
 
 2. **Install dependencies:**
@@ -139,7 +139,7 @@ flowchart TD
 ## 📁 Repository Structure
 
 ```
-main/
+AROGYAVANI/
 ├── dist/                     # Optimized production bundle
 ├── docs/
 │   └── screenshots/          # Showcase UI screenshots across languages & devices
