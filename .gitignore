@@ -34,3 +34,10 @@ lerna-debug.log*
 
 # Netlify
 .netlify
+
+# Office temporary files
+~$*
+
+# Python
+__pycache__/
+*.pyc
