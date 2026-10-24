@@ -13,7 +13,7 @@ dist
 dist-ssr
 *.local
 
-# Logs
+# Log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
