@@ -1,4 +1,4 @@
-# AI Coding Agent Instructions
+# AI Coding Agent Instructions.
 
 ## Section 1: Project Overview
 - AarogyaVani is a voice-first health navigation tool for ASHA workers and rural patients in India
