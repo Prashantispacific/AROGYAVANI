@@ -202,12 +202,11 @@ AarogyaVani is a **clinical triage and primary navigation assistant**, **NOT a d
 ---
 
 ## 👥 Team LocalHost Boys
-*GDG HBTU — Bit N Build '26 Hackathon (HealthTech Track)*
+* T-14
+- **Naitik Mishra**
+- **Yash Gupta**
+- **Ujjwal Verma**
 
-- **Prashant Gautam**
-- **Prathvi Goswami**
-- **Ankit Kumar**
-- **Love Gwal**
 
 *Built with care for India's 1 Million+ frontline ASHA workers and 850 Million+ rural citizens.*
 
