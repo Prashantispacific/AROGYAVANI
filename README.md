@@ -6,9 +6,6 @@
 [![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwindcss)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-> **Team LocalHost Boys** • GDG HBTU • Bit N Build '26 Hackathon (HealthTech Track)
-
 ---
 
 ## 📌 Executive Overview
